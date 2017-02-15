@@ -1,10 +1,157 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Homepage - Github</title>
+        <title>Crimes in Chicago</title>
+        <style>
+        body {background-color: gray;}
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            h2{background-color:red;}
+           
+            .center{margin: auto;
+            width: 10%;border: 3px solid blue;
+            padding: 10px solid red;}
+            .undefined{background-color:red;}
+            div{border: 1px solid black; margin: 5px; border-radius: 5px; background-color: #ededed;}
+        </style>
     </head>
     <body>
-        <h1>Homepage - Github</h1>
+  <center>
+<h1 id="hi"> Crimes in Chicago</h1>  
 
+
+ <div id="form">
+        <input type="text" id="Crimes" placeholder="Search Crimes...">
+        <button id="submit">Submit</button> 
+    </div> 
+
+<div id="demo"></div>
+</center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script>
+      /*
+            This script retrieves tow service data for ___
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+
+        // base URL to the food inspections data
+        var baseURL = 'https://data.cityofchicago.org/resource/itbm-jtnw.json';
+        
+        // optional filters we're appending - status
+        var filters = '';
+        
+        // full URL
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+            
+            
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+
+                    // loop through the records
+                    
+                    $.each(data, function(index, value){
+                       var html = "<center><div><h1>" + value.primary_type + "</h1>" +
+                                    "<p1>Arrest Status: " + value.arrest + "<br>" +
+                                    value.description + "<br>" +
+                                    "<p2>Location:" + value.block +
+                                    "<br>" + value.date + "<br>" +
+                                    value.location_description
+                                    "</p>" +
+                                    "</div></center>";
+                                    
+                        $("body").append(html);
+                    });
+                })
+            
+            
+        )
+        
+        function myFunction1(find, value) {
+    $.each(data, function(index, value){
+                       
+                       
+                       
+                        $("body").append(html);
+        });
+        }
+        
+        var plate = value.plate;
+
+        function checkCar(plate) {
+        return plate = plate;
+        }
+
+        function myFunction2() {
+         document.getElementById("demo").innerHTML = plate.find(checkCar);
+         console.log(myfunction1)
+    }
+    
+    
+    
+     var towedVehicle;
+            
+            $(function(){
+                
+                $("#submit").click(function(){
+                
+                    var html = "";
+                    
+                    //  variable to hold the returned data
+                    var inspections;
+                    
+                    // base URL to the food inspections data
+                    var baseURL = 'https://data.cityofchicago.org/resource/itbm-jtnw.json';
+                    
+                    // optional filters we're appending - date range and zip
+                    var filters = "?plate=" + $("#plateNumber").val();
+                    
+                    // full URL
+                    var url = baseURL + filters;
+                        
+                    $.getJSON(url).done (function (data) {
+                        // TODO:  add script to add data to the DOM
+                        console.log(data);
+                        // loop through the records
+                        
+                        towedVehicle = data;
+                        
+                        if(towedVehicle.length == 0){
+                            html = "No Vehicle Reported";
+                        } else{
+                              $.each(data, function(index, value){
+                       var html = "<center><div><h1>" + value.primary_type + "</h1>" +
+                                    "<p1>Arrest Status: " + value.arrest + "<br>" +
+                                    value.description + "<br>" +
+                                    "<p2>Location:" + value.block +
+                                    "<br>" + value.date + "<br>" +
+                                    value.location_description
+                                    "</p>" +
+                                    "</div></center>";
+                            
+                            })  // end of .each loop
+                        }
+                        
+                        $("#results").html(html);
+                        
+                    }) // end of getJSON function
+                    
+                })  // end of click function
+                
+            }) // end of ready command
+            
+    </script>
     </body>
 </html>

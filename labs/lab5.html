@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Towed Vehicles</title>
+
+    </head>
+    <body>
+    <h2> 
+        <b>
+            Towed Vehicles
+        </b>
+    </h2>
+
+  <button id="submit">Submit</button>
+  <div id="results"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <script>
+        /*
+            This script retrieves towed vehicle data for 
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+           var towedVehicles;
+           
+        $(function(){   
+            
+            $("#submit").click(function(){
+            
+            var plateNumber = "";
+            
+            var inspections;
+    
+            // base URL to the towed vehicle data
+            var baseURL = 'https://data.cityofchicago.org/resource/cjcg-yw47.json';
+            
+            // optional filters we're appending - status
+            var filters = "";
+            
+            // full URL
+            var url = baseURL + filters;
+
+            
+            $.getJSON(url) .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+                    
+                    var currentDate = data[0].gender;
+                    
+                    var male = 0;
+                    var female= 0;
+
+
+                    
+                    
+                    $.each(data, function(i,v){
+                            if(v.gender == "MALE"){
+                                male++;
+                          } else if(v.gender == "FEMALE"){
+                              female++;
+                                     }
+                         
+                        })
+
+                    
+                        google.charts.load('current', {'packages':['corechart']});
+                      google.charts.setOnLoadCallback(drawChart);
+                      function drawChart() {
+                
+                        var data = google.visualization.arrayToDataTable([
+                          ['Color', 'Number of sex offenders'],
+                          ['Male',     male],
+                          ['Female',  female]
+      
+                        ]);
+                
+                        var options = {
+                          title: 'Sex Offenders by Gender'
+                        };
+                
+                        var chart = new google.visualization.PieChart(document.getElementById('results'));
+                
+                        chart.draw(data, options);
+                      }
+
+                    }) // end of getJSON function
+                    
+                })  // end of click function
+                
+            }) // end of ready command
+            
+            
+        </script>
+    </body>
+</html>

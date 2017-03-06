@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bus Tracker</title>
+          <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <style>
+            div {
+            }
+            p {
+
+               font-size: 15px;
+               font-family: arial;
+               
+            }
+            img {
+                border: 5px double teal;
+                margin: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            h1{
+                font-family: "Impact", charcoal, sans-serif;
+                text-align: center;
+                font-size: 50px;
+                color: teal;
+                border: 5px double teal;
+                background: rgba(255, 0, 0, 0.5);
+                width: 40%;
+                margin: auto;
+                width: 50%;
+            }
+            .border {
+                border: 5px double teal;
+                margin: auto;
+                width: 50%;
+            }
+            .space {
+                border: none;
+            }
+            #buses {
+                 border: 5px double teal;
+                 font-family: impact;
+                 font-size: 20px;
+                 text-align: center;
+                 color: teal;
+                width: 40%;
+                margin: auto;
+                width: 50%;
+                padding: 10px;
+                background: rgba(255, 0, 0, 0.5);
+            }
+            body {
+                background-image: url("https://d3gqux9sl0z33u.cloudfront.net/image/image/7996/main/2.jpg");
+                background-repeat: repeat;
+            }
+            #select {
+                border: 5px double teal;
+                text-align: center;
+                 color: teal;
+                 width: 40%;
+                margin: auto;
+                width: 50%;
+                padding: 10px;
+                background: rgba(255, 0, 0, 0.5);
+                font-family: impact;
+                font-size: 20px;
+            }
+            button {
+                font-family: impact;
+                color: teal;
+                border: 4px double teal;
+                padding: 5px 5px;
+                font-size: 14px;
+                background: rgba(152, 244, 66, 0.6);
+            }
+        </style>
+    </head>
+    <body>
+        <h1><em>Bus Tracker Home</em></h1>
+        <div id="space"><br></div>
+        <div id="select">Find Your Page<br><br>
+        <button><a href="Bustracker.html">Tracker Home</a></button>
+        <button><a href="predictor.html">Predict Your Bus</a></button></div>
+        <div class="space"><br><br></div>
+            <img src="https://thumbs.dreamstime.com/t/tour-bus-running-along-express-road-white-there-sound-screens-along-road-motion-blur-due-to-speed-53859994.jpg" style='width: 500px'>
+        <div class="space"><br><br></div>
+        <div id="thisdiv"></div>
+        <div class="space"><br><br></div>
+        <div id="buses"><br></div>
+        <div id="space"><br><br></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "KSGXxUhfPr87489r6VQhVbzUj",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $("#thisdiv").append("<h1><em>Bus Routes</em></h1>");
+             
+              $.each(data["bustime-response"]["routes"], function(i,v) {
+                  $("#buses").append("Route #" + v.rt + ", " + v.rtnm + "<br>");
+                
+              })
+
+            });
+        });
+            
+  
+</script>
+    </body>
+</html>

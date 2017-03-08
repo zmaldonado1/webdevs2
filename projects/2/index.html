@@ -1,100 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <style>
-    #Northbound{
-      width: 25%;
-      float: left;
-    }
-    
-    #Southbound{
-      width: 25%;
-      float: left;
-    }
-    
-     #Westbound{
-      width: 25%;
-      float: left;
-    }
-    
-      #Eastbound{
-      width: 25%;
-      float: left;
-    }
-    
-    h4{border-style: inset;
-       border-color: gray ;
-       border-radius: 2px;
-       }
-  </style>
-  <meta charset="utf-8">
-  <title>jQuery.parseXML demo</title>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
-<body>
-  <div>
-    <div id="Northbound"></div>
-    <div id="Southbound"></div>
-    <div id="Westbound"></div>
-    <div id="Eastbound"></div>
-    <p></p>
-    
-    
-    
-    
-    
-    
-  </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Arvo|Indie+Flower|Rubik+Mono+One" rel="stylesheet">
+        <title>CTA Bus Tracker App</title>
+        <style>
+            body{
+                background-image: url("http://www.planwallpaper.com/static/images/cool-wallpapers-for-kids-high-definition-desktop-background-images-free_9q2bcvQ.jpg");
+            }
+            h1{ 
+                color: #1e7b1e;
+                font-family: 'Rubik Mono One', sans-serif;
+            }
+            h2{
+                color: #ffffff;
+                font-family: 'Arvo', serif;
+                text-shadow: 3px 2px gray;
+            }
+            #click{
+                background-color: gray;
+                border-radius:10px;
+                padding: 10px 24px;
+                font-family: 'Indie Flower', cursive;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        
+    <h1>Welcome to my CTA Bus Tracker App</h1>
+    <h2>This app will keep track of the CTA buses that run through routes 
+        152 and 49. These bus routes/stops are what most kids who attend Lane Tech
+        use to get home</h2>
+       <a href="cta.html"> <button id="click">Click Here for Times</button></a>
 
- 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script>
-        $(function() {
-          
-          
-          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
-          
-          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
-          
-          var Northbound = ''
-          
-          var Southbound = ''
-          
-          var Westbound = ''
-          
-          var Eastbound = ''
-          
-            
-          
-          
-          $.ajax({
-              url: apiPassThruUrl,
-              dataType: "json",
-              method: 'GET',
-              data: {"apiEndpoint": apiEndpoint,
-                      "key" : "RnrwAG4JD4p7HzrJLzgFLcAqQ",
-                      "stpid": "8417,12569,12527,8195",
-                      "rt": "49,152",
-                      "format":"json"}
-            }).done (function (data) {
-              console.log(data);
-              $("body").append();
-             
-              
-              $.each(data["bustime-response"]["prd"], function(i,v) {
-                
-                  $("#"+ v.rtdir).append("<h4>"+"Stop:" + v.stpnm + "<br>"+ 
-              "Direction:" + v.rtdir + "<br>"+ 
-               "Minutes:" + v.prdctdn + "<br>" + "<h4>");
-                
-              })
-              
-
-            });
-        });
-            
-  
-</script>
- 
-</body>
+    </body>
 </html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    #Northbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+      
+    }
+    
+    #Southbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+      
+    }
+    
+     #Westbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+    }
+    
+      #Eastbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+    }
+    
+    h4{border-style: inset;
+       border-color: gray ;
+       border-radius: 2px;
+       background-color: lightgray;
+       }
+  </style>
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+  <div>
+    <div id="Northbound"></div>
+    <div id="Southbound"></div>
+    <div id="Westbound"></div>
+    <div id="Eastbound"></div>
+    <p></p>
+    
+    
+    
+    
+    
+    
+  </div>
+
+ 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          var Northbound = ''
+          
+          var Southbound = ''
+          
+          var Westbound = ''
+          
+          var Eastbound = ''
+          
+            
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "RnrwAG4JD4p7HzrJLzgFLcAqQ",
+                      "stpid": "8417,12569,12527,8195",
+                      "rt": "49,152",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $("body").append();
+             
+              
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                
+                  $("#"+ v.rtdir).append("<h4>" +"Stop:" + v.stpnm + "<br>" + 
+              "Direction:" + v.rtdir + "<br>"+ 
+               "Minutes:" + v.prdctdn + "<br>" + "<h4>");
+                
+              })
+              
+
+            });
+        });
+            
+  
+</script>
+ 
+</body>
+</html>

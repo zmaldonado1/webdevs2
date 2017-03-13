@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Towed Vehicles</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            div { border: 4px solid black; margin: 10px; border-radius: 12px; background-color: #ededed;}
+            h1 {color: #ff00ff;}
+            #search { border-radius: 20px; 
+	-moz-border-radius: 20px; 
+	-webkit-border-radius: 20px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#b2a48c), to(#9b8d74));
+	background: -moz-linear-gradient(top, #b2a48c, #9b8d74);
+	text-shadow: rgba(0,0,0,.2) 0 0 5px;
+}
+
+#search-submit { 
+	border-radius: 50px; 
+	-moz-border-radius: 50px; 
+	-webkit-border-radius: 50px; 
+	-mox-box-shadow: 0 0 5px black;
+
+	/* Webkit-transition */
+	-webkit-transition-property: background-color; 
+	-webkit-transition-duration: 0.4s, 0.4s; 
+	-webkit-transition-timing-function: linear, ease-in;
+	}
+
+             </style>
+    </head>
+    <body>
+    <h2> 
+        <b>
+            Towed Vehicles
+        </b>
+    </h2>
+    Insert license plate in order to find towed vehicle.  Use Q332026 to test.<br>
+
+    <fieldset>
+        License Plate:
+        <input type="text" id="search" name="search" />
+        <input type="submit" id="search-submit" value="submit" />
+    </fieldset>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves towed vehicle data for 
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+       
+            
+        
+        
+        
+            // jQuery command to retrieve json data
+        $(function(){   
+            
+            var plateNumber = "";
+        
+        
+            $("#search-submit").on("click", function(){
+            plateNumber = $("#search").val(); 
+            console.log(plateNumber);
+       
+        
+        
+
+            // base URL to the towed vehicle data
+            var baseURL = 'https://data.cityofchicago.org/resource/rp42-fxjt.json';
+            
+            // optional filters we're appending - status
+            var filters = 'ate='+ plateNumber;
+            
+            // full URL
+            var url = baseURL + filters;
+            
+            console.log (url);
+            $.getJSON(url)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+
+                    // loop through the records
+                    
+                    $.each(data, function(index, value){
+                       var html = "<div><h1>" + value.make + "</h1>" +
+                                    "Date towed: " + value.tow_date + "<br>" +
+                                    "Towed to: " + value.towed_to_address + "<br>" +
+                                   "Licence Plate #: " + value.plate + "<br>" +
+                                   "Phone #:" + value.tow_facility_phone + "<br>" +
+                                    "</p>" + 
+                                    "</div>";
+                                    
+                        $("body").append(html);
+
+
+                                                
+                    });
+                })
+            
+          })
+        })
+        
+        
+    </script>
+    </body>
+</html>

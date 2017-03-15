@@ -1,6 +1,6 @@
 .portfolio-header {
   position: relative;
-  background-image: url(images/header-bg.jpg);
+  background-image: url("https://s-media-cache-ak0.pinimg.com/originals/ef/3f/91/ef3f91c4d07a12f49902b401695b6927.jpg");
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -29,7 +29,7 @@
 }
 
 .portfolio-logo {
-  background: url(images/logo.png) 50% no-repeat;
+  background: url("https://s3.amazonaws.com/hiphopdx-production/2016/11/Desiigner-riot-828x620.jpg") 50% no-repeat;
   background-size: cover;
   height: 150px;
   width: 150px;

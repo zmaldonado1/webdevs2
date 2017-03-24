@@ -42,6 +42,9 @@
       <main class="mdl-layout__content">
         <div id="screen1"class="screen page-content">Screen 1
         
+
+        
+        
         
         
         
@@ -66,16 +69,51 @@
             $("#link1").on("click", function(){
                 $(".screen").hide();
                 $("#screen1").show();
-            })
+            });
             $("#link2").on("click", function(){
                 $(".screen").hide()
                 $("#screen2").show();
-            })
+            });
             $("#link3").on("click", function(){
                 $(".screen").hide()
                 $("#screen3").show();
-            })
-        })
+            });
+        });
+                $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "https://api.sportradar.us/nfl-ot1/players/41c44740-d0f6-44ab-8347-3b5d515e5ecf/profile.json";
+          
+          
+            
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "api_key" : "gv8vwg5m6zatdy5dzj5yqmft",
+                      "player_id": "41c44740-d0f6-44ab-8347-3b5d515e5ecf",
+                      "format":"json"
+                      }
+            }).done (function (data) {
+              console.log(data);
+              //$("body").append();
+             $("#screen1").append("<h4>" +"Name:" + data.name + "<br>" + "Position:"+ data.position + "<br>"+ "Weight:"+ data.weight +"<br>"+"Rookie Year:" + data.rookie_year + "<br>"+"Birthday:" + data.birth_date +"<br>"+"College:"+data.college+"</h4>");
+              
+             /*$.each(data, function(i,v) {
+                
+                 $("#screen1").append("<h4>" +"Name:" + v["name"] + "<br>" + 
+              "Position:" + v.position + "<br>"+ 
+               "Weight:" + v.weight + "<br>" + "<h4>");
+                
+              })*/
+              
+
+            });
+        });    
         
     </script>
     

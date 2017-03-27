@@ -9,6 +9,25 @@
         .screen {
             display: none;
         }
+        h4{border-style: inset;
+       border-color: gray ;
+       border-radius: 2px;
+       background-image: url("https://s-media-cache-ak0.pinimg.com/originals/a9/12/6d/a9126d73e674904ba256d8fdd3d2eb76.jpg");
+       background-position: center;
+       font-size: 200%;
+       color: #ff471a;
+       text-shadow: 2px 2px black;
+        }
+        #screen1{background-image: url('http://www.hardwoodandhollywood.com/wp-content/uploads/2015/01/SP14_NFL_SB_TeamGloves_Hands_Patriots_36854.jpg');
+    height: 2000px;
+    width: 2000px;          
+          
+        }
+        #screen2{background-image: url('http://wallpapercave.com/wp/odoz5rn.jpg');
+    height: 2000px;
+    width: 2000px;
+    background-position: center;
+        }
     </style>
 
   </head>
@@ -33,14 +52,14 @@
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Title</span>
         <nav class="mdl-navigation">
-          <a id="link1"class="mdl-navigation__link" href="#">Link 1</a>
+          <a id="link1"class="mdl-navigation__link" href="#">Tom Brady Profile</a>
           <a id="link2"class="mdl-navigation__link" href="#">Link 2</a>
           <a id="link3"class="mdl-navigation__link" href="#">Link 3</a>
           <a class="mdl-navigation__link" href="">Link 4</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
-        <div id="screen1"class="screen page-content">Screen 1
+        <div id="screen1"class="screen page-content">
         
 
         
@@ -55,9 +74,9 @@
         
         
         </div>
-        <div id="screen2"class="screen page-content">Screen 2
+        <div id="screen2"class="screen page-content">
         </div>
-        <div id="screen3"class="screen page-content">Screen 3
+        <div id="screen3"class="screen page-content">
         </div>
       
       </main>
@@ -86,7 +105,7 @@
           
           var apiEndpoint = "https://api.sportradar.us/nfl-ot1/players/41c44740-d0f6-44ab-8347-3b5d515e5ecf/profile.json";
           
-          
+          var nbaAPI = "http://api.sportradar.us/nba-t3/players/0afbe608-940a-4d5d-a1f7-468718c67d91/profile.json?api_key=skn74w6qaq5qx3ek8yv9q343"
             
           
           $.ajax({
@@ -111,9 +130,22 @@
                 
               })*/
               
+              $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"nbaAPI": nbaAPI,
+                      "api_key" : "skn74w6qaq5qx3ek8yv9q343",
+                      "player_id": "0afbe608-940a-4d5d-a1f7-468718c67d91",
+                      "format":"json"
+                      }
+            }).done (function (data) {
+              console.log(data);
+              
 
             });
         });    
+                });
         
     </script>
     

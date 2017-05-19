@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      .demo-layout-transparent {
+  background: url('https://images7.alphacoders.com/437/437679.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+.mdl-layout__drawer{
+  background: url('http://68.media.tumblr.com/78061d7c739682ef7596c2b43cda2fe7/tumblr_msq35v5WEM1r54c4oo2_1280.jpg');
+  background-position: center;
+  background-size: 400px 900px
+}
+    #Northbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+      
+    }
+    
+    #Southbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+      
+    }
+    
+     #Westbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+    }
+    
+      #Eastbound{
+      width: 20%;
+      float: left;
+      margin: 10px;
+    }
+    
+    h4{border-style: inset;
+       border-color: white ;
+       border-radius: 4px;
+       background-image: url("https://f.vividscreen.info/soft/b85e2ee716b7e10d21b508c0f18258e9/Chicago-Night-Lights-wide-l.jpg") ;
+       
+       color: white;
+       
+       }
+    </style>
+  </head>
+  <body>
+    <!-- Uses a transparent header that draws on top of the layout's background -->
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">CTA Bus Tracker</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="Homepage.html">Homepage</a>
+            <a class="mdl-navigation__link" href="CTA2.html">To Lane</a>
+            <a class="mdl-navigation__link" href="CTA1.html">From Lane</a>
+            
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">CTA Bus Tracker</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="Homepage.html">Homepage</a>
+            <a class="mdl-navigation__link" href="CTA2.html">To Lane</a>
+            <a class="mdl-navigation__link" href="CTA1.html">From Lane</a>
+            
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+    <div id="Northbound"></div>
+    <div id="Southbound"></div>
+    <div id="Westbound"></div>
+    <div id="Eastbound"></div>
+        
+      </main>
+    </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          var Northbound = ''
+          
+          var Southbound = ''
+          
+          var Westbound = ''
+          
+          var Eastbound = ''
+          
+            
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "RnrwAG4JD4p7HzrJLzgFLcAqQ",
+                      "stpid": "14124,14118,12920",
+                      "rt": "53A,63",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $("body").append();
+             
+              
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                
+                  $("#"+ v.rtdir).append("<h4>" +"Stop:" + v.stpnm + "<br>" + 
+              "Direction:" + v.rtdir + "<br>"+ 
+               "Minutes:" + v.prdctdn + "<br>" + "<h4>");
+                
+              })
+              
+
+            });
+        });
+            
+  
+</script>
+  </body>
+</html>

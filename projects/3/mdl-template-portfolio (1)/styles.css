@@ -60,6 +60,10 @@
           flex: 1;
   line-height: 42px;
 }
+.mdl-layout__content{
+  background-image: url('https://s-media-cache-ak0.pinimg.com/originals/ef/3f/91/ef3f91c4d07a12f49902b401695b6927.jpg')
+}
+
 
 .portfolio-header .mdl-layout__drawer-button {
     background-color: rgba(197, 197, 197, 0.44);

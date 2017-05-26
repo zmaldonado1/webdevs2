@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Drawing</title>
+        <style>
+            canvas{
+                border: #333 10px solid;
+            }
+        </style>
+    </head>
+    <body>
+<canvas id="myCanvas" width= "550px" height= "350px">
+    
+</canvas>
+<script>
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
+    context.beginPath();
+    context.lineWidth= 25;
+    context.moveTo(160,130);
+    context.lineTo(75,200);
+    context.lineTo(150,275);
+    context.lineTo(300,250);
+    context.lineTo(70,50);
+    context.closePath();
+    context.strokeStyle ="black";
+    context.stroke();
+    context.fillStyle = "blue";
+    context.fill();
+    //SECOND SHAPE
+    context.beginPath()
+    context.lineWidth= 25
+    context.moveTo(160,130);
+    context.lineTo(75,200);
+    context.lineTo(150,275);
+    context.lineTo(300,250);
+    context.lineTo(70,50);
+    context.closePath();
+    context.strokeStyle ="black";
+    context.stroke();
+    context.fillStyle = "blue";
+    context.fill();
+    
+
+    
+</script>
+    </body>
+</html>

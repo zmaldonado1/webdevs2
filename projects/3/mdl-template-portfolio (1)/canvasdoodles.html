@@ -28,6 +28,8 @@
     context.fillStyle = "blue";
     context.fill();
     //SECOND SHAPE
+    context.translate(200, 10);
+    context.scale(1, 1);
     context.beginPath()
     context.lineWidth= 25
     context.moveTo(160,130);
@@ -39,6 +41,36 @@
     context.strokeStyle ="black";
     context.stroke();
     context.fillStyle = "blue";
+    context.fill();
+    //THIRD SHAPE
+    context.beginPath();
+    context.arc(10, 210, 45, 0, 2 * Math.PI, true);
+    context.fillStyle = "black";
+    context.fill();
+    //FOURTH
+    context.beginPath();
+    context.arc(10, 210, 30, 0, 2 * Math.PI, true);
+    context.fillStyle = "white";
+    context.fill();
+    //FIVE
+    context.beginPath();
+    context.arc(20, 225, 10, 0, 2 * Math.PI, true);
+    context.fillStyle = "black";
+    context.fill();
+    //SIX
+    context.beginPath();
+    context.arc(200, 210, 45, 0, 2 * Math.PI, true);
+    context.fillStyle = "black";
+    context.fill();
+    //SEVEN
+    context.beginPath();
+    context.arc(200, 210, 30, 0, 2 * Math.PI, true);
+    context.fillStyle = "white";
+    context.fill();
+    //EIGHT
+    context.beginPath();
+    context.arc(210, 225, 10, 0, 2 * Math.PI, true);
+    context.fillStyle = "black";
     context.fill();
     
 
